@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian HomeCell Weekly Role Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f3f6fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        /* Container Styles */
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Style */
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            color: #1abc9c;
+            font-size: 38px;
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: 600;
+            transition: color 0.5s ease;
+        }
+
+        /* Button Style */
+        button {
+            background-color: #e67e22;
+            color: white;
+            padding: 16px 36px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #d35400;
+            transform: scale(1.1);
+        }
+
+        /* Role List Styles */
+        #rolesDisplay {
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 18px;
+        }
+
+        li {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            text-align: left;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            color: #1abc9c;
+            font-weight: bold;
+        }
+
+        /* Ice Breaker Suggestions */
+        #iceBreakerSuggestions {
+            margin-top: 30px;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+
+        .suggestions {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Responsive Design for Mobile */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            ul {
+                font-size: 16px;
+            }
+        }
+
+        /* Christian-themed Cartoon Images */
+        .decor-image {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: auto;
+            animation: floatUp 3s infinite ease-in-out;
+        }
+
+        .decor-image:nth-child(2) {
+            left: 10px;
+            bottom: 80px;
+            width: 80px;
+            animation-delay: 1s;
+        }
+
+        /* Animation for Floating Images */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Christian HomeCell Weekly Role Generator</h1>
+        <button id="generateButton">Generate Roles</button>
+
+        <div id="rolesDisplay">
+            <h2>Roles for This Week:</h2>
+            <ul id="rolesList">
+                <li><strong>Cater Food:</strong> <span id="foodRole"></span></li>
+                <li><strong>Do the Word:</strong> <span id="wordRole"></span></li>
+                <li><strong>Do Worship:</strong> <span id="worshipRole"></span></li>
+                <li><strong>Ice Breaker:</strong> <span id="iceBreakerRole"></span></li>
+                <li><strong>Announcements:</strong> <span id="announcementsRole"></span></li>
+            </ul>
+
+            <div id="iceBreakerSuggestions">
+                <h2>Ice Breaker Suggestions:</h2>
+                <div class="suggestions" id="suggestion1">Suggestion 1</div>
+                <div class="suggestions" id="suggestion2">Suggestion 2</div>
+                <div class="suggestions" id="suggestion3">Suggestion 3</div>
+            </div>
+        </div>
+
+        <img src="https://example.com/christian-cartoon.png" alt="Christian Cartoon" class="decor-image">
+        <img src="https://example.com/another-cartoon.png" alt="Christian Cartoon" class="decor-image">
+    </div>
+
+    <script>
+        const roles = {
+            food: ["Riziki", "Adara", "Leah", "Kaylee", "Kyle", "Shivani", "Chloe", "Ariel", "Ricky", "Lorraine", "Sina"],
+            word: ["Riziki", "Adara", "Leah", "Kaylee", "Kyle", "Shivani", "Chloe", "Ariel", "Ricky", "Lorraine", "Sina"],
+            worship: ["Riziki", "Adara", "Leah", "Kaylee", "Kyle", "Shivani", "Chloe", "Ariel", "Ricky", "Lorraine", "Sina"],
+            iceBreaker: ["Riziki", "Adara", "Leah", "Kaylee", "Kyle", "Shivani", "Chloe", "Ariel", "Ricky", "Lorraine", "Sina"],
+            announcements: ["Riziki", "Adara", "Leah", "Kaylee", "Kyle", "Shivani", "Chloe", "Ariel", "Ricky", "Lorraine", "Sina"]
+        };
+
+        const excludedFromFood = ["Riziki", "Adara", "Leah", "Kaylee"];
+
+        let usedRoles = {
+            food: [],
+            word: [],
+            worship: [],
+            iceBreaker: [],
+            announcements: []
+        };
+
+        const generateButton = document.getElementById("generateButton");
+        const rolesList = document.getElementById("rolesList");
+
+        const getRandomRole = (roleType) => {
+            let availableCandidates = roles[roleType].filter(candidate => !usedRoles[roleType].includes(candidate) && !(roleType === "food" && excludedFromFood.includes(candidate)));
+            if (availableCandidates.length === 0) {
+                // Reset if all candidates have had a turn
+                usedRoles[roleType] = [];
+                availableCandidates = roles[roleType];
+            }
+            const randomIndex = Math.floor(Math.random() * availableCandidates.length);
+            return availableCandidates[randomIndex];
+        };
+
+        const generateRoles = () => {
+            // Generate roles for each task
+            const foodRole = getRandomRole("food");
+            const wordRole = getRandomRole("word");
+            const worshipRole = getRandomRole("worship");
+            const iceBreakerRole = getRandomRole("iceBreaker");
+            const announcementsRole = getRandomRole("announcements");
+
+            // Add the roles to used roles list
+            usedRoles.food.push(foodRole);
+            usedRoles.word.push(wordRole);
+            usedRoles.worship.push(worshipRole);
+            usedRoles.iceBreaker.push(iceBreakerRole);
+            usedRoles.announcements.push(announcementsRole);
+
+            // Display the roles
+            document.getElementById("foodRole").textContent = foodRole;
+            document.getElementById("wordRole").textContent = wordRole;
+            document.getElementById("worshipRole").textContent = worshipRole;
+            document.getElementById("iceBreakerRole").textContent = iceBreakerRole;
+            document.getElementById("announcementsRole").textContent = announcementsRole;
+
+            // Generate icebreaker suggestions
+            document.getElementById("suggestion1").textContent = "Find 3 common things in the group";
+            document.getElementById("suggestion2").textContent = "Pass the ball: Whoever catches it has to answer a question";
+            document.getElementById("suggestion3").textContent = "Create a group story, each person says one line!";
+        };
+
+        generateButton.addEventListener("click", generateRoles);
+    </script>
+</body>
+</html>
