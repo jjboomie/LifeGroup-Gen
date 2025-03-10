@@ -132,36 +132,6 @@
                 font-size: 16px;
             }
         }
-
-        /* Christian-themed Cartoon Images */
-        .decor-image {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 100px;
-            height: auto;
-            animation: floatUp 3s infinite ease-in-out;
-        }
-
-        .decor-image:nth-child(2) {
-            left: 10px;
-            bottom: 80px;
-            width: 80px;
-            animation-delay: 1s;
-        }
-
-        /* Animation for Floating Images */
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -186,9 +156,6 @@
                 <div class="suggestions" id="suggestion3">Suggestion 3</div>
             </div>
         </div>
-
-        <img src="https://example.com/christian-cartoon.png" alt="Christian Cartoon" class="decor-image">
-        <img src="https://example.com/another-cartoon.png" alt="Christian Cartoon" class="decor-image">
     </div>
 
     <script>
@@ -211,12 +178,10 @@
         };
 
         const generateButton = document.getElementById("generateButton");
-        const rolesList = document.getElementById("rolesList");
 
         const getRandomRole = (roleType) => {
             let availableCandidates = roles[roleType].filter(candidate => !usedRoles[roleType].includes(candidate) && !(roleType === "food" && excludedFromFood.includes(candidate)));
             if (availableCandidates.length === 0) {
-                // Reset if all candidates have had a turn
                 usedRoles[roleType] = [];
                 availableCandidates = roles[roleType];
             }
@@ -225,34 +190,12 @@
         };
 
         const generateRoles = () => {
-            // Generate roles for each task
             const foodRole = getRandomRole("food");
             const wordRole = getRandomRole("word");
             const worshipRole = getRandomRole("worship");
             const iceBreakerRole = getRandomRole("iceBreaker");
             const announcementsRole = getRandomRole("announcements");
 
-            // Add the roles to used roles list
             usedRoles.food.push(foodRole);
             usedRoles.word.push(wordRole);
-            usedRoles.worship.push(worshipRole);
-            usedRoles.iceBreaker.push(iceBreakerRole);
-            usedRoles.announcements.push(announcementsRole);
-
-            // Display the roles
-            document.getElementById("foodRole").textContent = foodRole;
-            document.getElementById("wordRole").textContent = wordRole;
-            document.getElementById("worshipRole").textContent = worshipRole;
-            document.getElementById("iceBreakerRole").textContent = iceBreakerRole;
-            document.getElementById("announcementsRole").textContent = announcementsRole;
-
-            // Generate icebreaker suggestions
-            document.getElementById("suggestion1").textContent = "Find 3 common things in the group";
-            document.getElementById("suggestion2").textContent = "Pass the ball: Whoever catches it has to answer a question";
-            document.getElementById("suggestion3").textContent = "Create a group story, each person says one line!";
-        };
-
-        generateButton.addEventListener("click", generateRoles);
-    </script>
-</body>
-</html>
+            usedRoles.worship.push(w
