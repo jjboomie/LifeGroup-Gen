@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christian HomeCell Weekly Role Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&family=Lobster&family=Pacifico&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         /* General Body Styles */
         body {
@@ -17,6 +17,7 @@
             height: 100vh;
             margin: 0;
             flex-direction: column;
+            transition: background-color 0.5s ease;
         }
 
         /* Container Styles */
@@ -212,6 +213,11 @@
 
         const generateButton = document.getElementById("generateButton");
         const rolesList = document.getElementById("rolesList");
+        const body = document.body;
+
+        const fonts = ['Roboto', 'Open Sans', 'Lobster', 'Pacifico', 'Indie Flower'];
+
+        const colors = ['#f3f6fa', '#f9e6e6', '#d9f9e6', '#e6f9f9', '#f6f3e6'];
 
         const getRandomRole = (roleType) => {
             let availableCandidates = roles[roleType].filter(candidate => !usedRoles[roleType].includes(candidate) && !(roleType === "food" && excludedFromFood.includes(candidate)));
@@ -233,26 +239,4 @@
             const announcementsRole = getRandomRole("announcements");
 
             // Add the roles to used roles list
-            usedRoles.food.push(foodRole);
-            usedRoles.word.push(wordRole);
-            usedRoles.worship.push(worshipRole);
-            usedRoles.iceBreaker.push(iceBreakerRole);
-            usedRoles.announcements.push(announcementsRole);
-
-            // Display the roles
-            document.getElementById("foodRole").textContent = foodRole;
-            document.getElementById("wordRole").textContent = wordRole;
-            document.getElementById("worshipRole").textContent = worshipRole;
-            document.getElementById("iceBreakerRole").textContent = iceBreakerRole;
-            document.getElementById("announcementsRole").textContent = announcementsRole;
-
-            // Generate icebreaker suggestions
-            document.getElementById("suggestion1").textContent = "Find 3 common things in the group";
-            document.getElementById("suggestion2").textContent = "Pass the ball: Whoever catches it has to answer a question";
-            document.getElementById("suggestion3").textContent = "Create a group story, each person says one line!";
-        };
-
-        generateButton.addEventListener("click", generateRoles);
-    </script>
-</body>
-</html>
+            usedRoles.food.push
